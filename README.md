@@ -1,8 +1,8 @@
-# 🛒 Flask E-Commerce Website
+🛒 Flask E-Commerce Website
 
 A simple E-Commerce web application built using Flask, SQLAlchemy, Bootstrap, and SQLite.
 
-## 🚀 Features
+🚀 Features
 
 - User Registration & Login (Flask-Login)
 - Category-based product filtering
@@ -13,7 +13,7 @@ A simple E-Commerce web application built using Flask, SQLAlchemy, Bootstrap, an
 - Admin Add Product feature
 - Responsive UI using Bootstrap
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
 
 - Python
 - Flask
@@ -24,7 +24,7 @@ A simple E-Commerce web application built using Flask, SQLAlchemy, Bootstrap, an
 - CSS3
 - Bootstrap
 
-## 📂 Project Structure
+ 📂 Project Structure
 
 ```
 E-commerce/
@@ -49,8 +49,7 @@ E-commerce/
     ├── category.html
     ├── cart.html
 ```
-
-## ⚙️ Installation & Setup
+ ⚙️ Installation & Setup
 
 1. Clone the repository
 
@@ -93,7 +92,7 @@ App will run on:
 http://127.0.0.1:5000/
 ```
 
-## 🎯 Future Improvements
+🎯 Future Improvements
 
 - Payment Gateway Integration
 - Admin Dashboard
@@ -101,7 +100,6 @@ http://127.0.0.1:5000/
 - Deployment on Render/Heroku
 - Product Image Upload Feature
 
----
 
-### 👩‍💻 Developed by
-Your Name
+ 👩‍💻 Developed by
+Baheerathy A
