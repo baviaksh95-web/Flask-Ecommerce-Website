@@ -1,0 +1,129 @@
+*
+{
+    margin:0;
+    padding:0;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: row;
+}
+#nav-bar {
+    width:100%;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.navbar {
+    background-image: linear-gradient(to right,#a517ba,#5f1782);
+    padding:0 !important;
+    margin:0;
+}
+.navbar-brand img{
+    color:#fff;
+    height:50px;
+    padding-left:20px;
+
+}
+.navbar-nav li{
+    display:inline-block;
+    padding:0 10px;
+
+}
+.navbar-nav li a{
+    color:#fff !important;
+    font-weight:600;
+    float:right;
+    text-align:left;
+
+}
+.fa-solid fa-bars {
+  font-size: 24px !important;
+  color: antiquewhite;
+}
+.navbar-toggler {
+    outline:none !important;
+}
+/*Category section*/
+ #categories img {
+    width: 100%;           /* full width of column */
+    height: 200px;         /* fixed height for uniformity */
+    object-fit: cover;     /* crop images nicely without stretching */
+    border-radius: 8px;    /* optional rounded corners */
+    aspect-ratio: 1/1; /* maintain square aspect ratio */
+}
+
+  #categories span {
+    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/** To make Login and Register page display centre of the page***/
+#login .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+}
+
+/**For register page style*/
+#register .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+}
+/* Card */
+.auth-card {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Inputs */
+.auth-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+.auth-card button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-card button:hover {
+    background: #2e59d9;
+}
+
+/* Links */
+.auth-card a {
+    text-decoration: none;
+    color: #4e73df;
+}
+
+.auth-card p {
+    margin-top: 15px;
+    font-size: 14px;
+}

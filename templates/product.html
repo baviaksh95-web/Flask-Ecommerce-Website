@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="products" class="py-5">
+<div class="container">
+    <h2 class="mb-4 text-center">Our Products</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <a href="{{url_for('product_detail', product_id = product.id)}}">
+                <img class="card-img-top" src="{{url_for('static', filename = 'images/'+product.product_image)}}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title"> {{ product.product_name }}</h5>
+                <p class="card-text"> Rs.{{ product.product_price }}</p>
+            </div>
+        </div>
+</div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock %}

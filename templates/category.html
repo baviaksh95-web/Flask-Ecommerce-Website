@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="category" class="py-5">
+<div class="container">
+    <h2 class="text-center mb-5 text-capitalize">
+        {{ category }} Products
+    </h2>
+    <div class="row">
+        {% if products %}
+        {% for product in products %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img  src="{{ url_for('static', filename='images/' + product.product_image) }}" class="card-img-top" alt="{{product.product_name}}">
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ product.product_name }}</h5>
+                    <p class="card-text text-muted">{{ product.description }}</p>
+                    <p><b>₹ {{ product.product_price }}</b></p>
+
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-success">
+                        Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="text-center">
+            <h4 class="text-center">No products found in this category.</h4>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</section>
+{% endblock %}

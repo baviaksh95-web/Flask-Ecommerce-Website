@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="login" class="py-5" >
+<div class="container col-md-4 mb-4">
+        <!-- Login Form -->
+    <div class="auth-card">
+        <h3 class="mb-3"> Login</h3>
+        <div class="row justify-content-center">
+        <div class="col md-4 mb-2">
+        {% if login_error %}
+        <div class="alert alert-danger">{{ login_error}}</div>
+        {% endif %}
+        <form method="POST" action="{{url_for('login')}}">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control w-100" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control w-100" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="categories" class="container my-5">
+<h2 class="text-center my-5">Shop by Category</h2>
+<div class="row">
+<!--Men's Clothing -->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'men')}}">
+    <img src="{{ url_for('static', filename='images/cat-men.jpeg') }}" 
+         class="img-fluid rounded" 
+         alt="Mens">
+  </a>
+  <h6 class="mt-2">Mens Clothing</h6>
+</div>
+<!--Women's Clothing -->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'women')}}">
+    <img src="{{ url_for('static', filename='images/cat-women.jpeg') }}" 
+         class="img-fluid rounded" 
+         alt="Womens">
+  </a>
+  <h6 class="mt-2">Women's Clothing</h6>
+</div>
+
+<!--Kids -->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'kids')}}">
+  <img src="{{ url_for('static', filename='images/cat-kids.jpeg') }}"
+  class="img-fluid rounded" 
+  alt="--Kids">
+  </a>
+  <h6 class="mt-2">Kids Clothing</h6>
+</div>
+<!---Electronics-->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'electronics')}}">
+    <img src="{{ url_for('static', filename='images/cat-electronics.jpeg') }}" 
+    class="img-fluid rounded" 
+    alt="---Electronics--"></a>
+  <h6 class="mt-2">Electronics</h6>
+</div>
+<!--Makeup-->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'makeup')}}">
+    <img src="{{ url_for('static', filename='images/cat-makeup.jpeg') }}"
+    class="img-fluid rounded" 
+    alt="Makeup"></a>
+  <h6 class="mt-2">Makeup</h6>
+</div>
+<!--Accesories-->
+<div class="col-md-6 col-lg-4">
+  <a href="{{ url_for('category', category_name = 'accessories')}}">
+    <img src="{{ url_for('static', filename='images/cat-accesories.jpeg') }}"
+    class="img-fluid rounded" 
+    alt="Accessories"></a>
+  <h6 class="mt-2">Accessories</h6>
+</div>
+</div>
+</section>
+<!--Featured Section-->
+<section id="--Featured" class="container my-5">
+  <h2>Featured Products</h2>
+  <div class="row row-cols-2 row-cols-md-4 g-4">
+        <!-- Product Card -->
+    <div class="col">
+      <div class="card" style="width:18rem;">
+        <img src="{{url_for('static',filename = 'images/prod1.jpg')}}" class="card-img-top" alt="Product">
+        <div class="card-body text-center">
+          <h6 class="card-title"> Product Name</h6>
+          <p class="text-muted">Rs 299</p> 
+          <button class="btn btn-sm btn-success"> Add to Cart</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="register" class="py-5" >
+<div class="container col-md-4 mb-4">
+    <!--Register form-->
+    <div class="auth-card">
+        <h3 class="mb-3"> Register </h3>
+        <div class="row justify-content-center">
+        <div class="col md-4 mb-2">
+        {% if register_error %}
+            <div class="alert alert-danger">{{ register_error}}</div>
+        {% endif %}
+    </div>
+    <form method="POST" action="{{url_for('register')}}">
+    <div class="mb-3">
+        <label for="reg_username" class="form-label"> Username</label>
+        <input type="text" class="form-control" id="reg_username" name="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="reg_email" class="form-label"> Email</label>
+        <input type="text" class="form-control" id="reg_email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="reg_mobile" class="form-label"> Mobile</label>
+        <input type="number" class="form-control" id="reg_mobile" name="mobile" required>
+    </div>
+    <div class="mb-3">
+        <label for="reg_password" class="form-label"> Password</label>
+        <input type="password" class="form-control" id="reg_password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+</div>
+</section>
+{% endblock %}
