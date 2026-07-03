@@ -8,29 +8,105 @@
         <h3 class="mb-3"> Register </h3>
         <div class="row justify-content-center">
         <div class="col md-4 mb-2">
-        {% if register_error %}
-            <div class="alert alert-danger">{{ register_error}}</div>
+        {% if register_errors %}
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                {% for error in register_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            </div>
         {% endif %}
     </div>
     <form method="POST" action="{{url_for('register')}}">
     <div class="mb-3">
         <label for="reg_username" class="form-label"> Username</label>
-        <input type="text" class="form-control" id="reg_username" name="username" required>
+        <input type="text" class="form-control" id="reg_username" name="username" required value="{{ form_data.username if form_data else '' }}">
     </div>
     <div class="mb-3">
         <label for="reg_email" class="form-label"> Email</label>
-        <input type="text" class="form-control" id="reg_email" name="email" required>
+        <input type="email" class="form-control" id="reg_email" name="email" required value="{{ form_data.email if form_data else '' }}">
     </div>
     <div class="mb-3">
         <label for="reg_mobile" class="form-label"> Mobile</label>
-        <input type="number" class="form-control" id="reg_mobile" name="mobile" required>
+        <input type="text" class="form-control" id="reg_mobile" name="mobile" required pattern="\d{10}" title="Enter exactly 10 digits" value="{{ form_data.mobile if form_data else '' }}">
     </div>
     <div class="mb-3">
         <label for="reg_password" class="form-label"> Password</label>
-        <input type="password" class="form-control" id="reg_password" name="password" required>
+        <div class="input-group">
+            <input type="password" class="form-control" id="reg_password" name="password" required>
+            <button class="btn btn-outline-secondary" type="button" id="togglePassword" tabindex="-1">
+                <i class="fa-solid fa-eye" id="passwordEye"></i>
+            </button>
+        </div>
+        <div id="passwordHelp" class="form-text text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <label for="reg_confirm_password" class="form-label"> Confirm Password</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="reg_confirm_password" name="confirm_password" required>
+            <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword" tabindex="-1">
+                <i class="fa-solid fa-eye" id="confirmPasswordEye"></i>
+            </button>
+        </div>
+        <div id="confirmPasswordHelp" class="form-text text-danger"></div>
     </div>
     <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
 </div>
 </section>
+
+<script>
+    const passwordInput = document.getElementById('reg_password');
+    const confirmInput = document.getElementById('reg_confirm_password');
+    const passwordHelp = document.getElementById('passwordHelp');
+    const confirmHelp = document.getElementById('confirmPasswordHelp');
+    const togglePassword = document.getElementById('togglePassword');
+    const toggleConfirm = document.getElementById('toggleConfirmPassword');
+    const passwordEye = document.getElementById('passwordEye');
+    const confirmPasswordEye = document.getElementById('confirmPasswordEye');
+
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
+
+    function validatePassword() {
+        const password = passwordInput.value;
+        if (!passwordPattern.test(password)) {
+            passwordHelp.textContent = 'Password must be at least 8 characters and include uppercase, lowercase, number, and special character.';
+            return false;
+        }
+        passwordHelp.textContent = '';
+        return true;
+    }
+
+    function validateConfirmPassword() {
+        const password = passwordInput.value;
+        const confirm = confirmInput.value;
+        if (confirm && password !== confirm) {
+            confirmHelp.textContent = 'Passwords do not match.';
+            return false;
+        }
+        confirmHelp.textContent = '';
+        return true;
+    }
+
+    passwordInput.addEventListener('input', () => {
+        validatePassword();
+        validateConfirmPassword();
+    });
+
+    confirmInput.addEventListener('input', validateConfirmPassword);
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        passwordEye.classList.toggle('fa-eye-slash');
+    });
+
+    toggleConfirm.addEventListener('click', () => {
+        const type = confirmInput.type === 'password' ? 'text' : 'password';
+        confirmInput.type = type;
+        confirmPasswordEye.classList.toggle('fa-eye-slash');
+    });
+</script>
+
 {% endblock %}

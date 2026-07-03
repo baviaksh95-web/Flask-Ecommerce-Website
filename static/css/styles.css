@@ -7,9 +7,17 @@ html {
     scroll-behavior: smooth;
 }
 body {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: row;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* stack header, content, footer vertically */
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: 0;
 }
 #nav-bar {
     width:100%;
@@ -51,10 +59,10 @@ body {
 /*Category section*/
  #categories img {
     width: 100%;           /* full width of column */
-    height: 200px;         /* fixed height for uniformity */
+    height: auto;          /* allow natural height to keep image ratio */
+    max-height: 220px;     /* optional max height to prevent very tall images */
     object-fit: cover;     /* crop images nicely without stretching */
     border-radius: 8px;    /* optional rounded corners */
-    aspect-ratio: 1/1; /* maintain square aspect ratio */
 }
 
   #categories span {

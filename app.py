@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for,session
+import requests
+from flask_login import login_user, logout_user, current_user, login_required
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_login import login_user
 from extensions import db, login_manager
 from models import User,Product,Cart
@@ -40,20 +42,55 @@ def login():
             
     return render_template("login.html")
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+    
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form['username']
-        email = request.form['email']
-        mobile = request.form['mobile']
+        username = request.form['username'].strip()
+        email = request.form['email'].strip()
+        mobile = request.form['mobile'].strip()
         password = request.form['password']
+        confirm_password = request.form.get('confirm_password', '')
 
-        # Check for existing user
-        existing_user = User.query.filter_by(username = username ).first() #filter_by is a keyword argument in SQLAlchemy 
-        if existing_user:
-            register_error = "Username already registered; Please Login"
-            return render_template('register.html',register_error = register_error)
-        
+        errors = []
+
+        # Validate email format
+        email_pattern = r'^[^@\s]+@[^@\s]+\.[^@\s]+$'
+        if not re.match(email_pattern, email):
+            errors.append("Please enter a valid email address with @ and a domain, e.g. user@gmail.com.")
+
+        # Validate mobile number format
+        if not re.match(r'^\d{10}$', mobile):
+            errors.append("Mobile number must be exactly 10 digits.")
+
+        # Validate password strength
+        password_pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$'
+        if password != confirm_password:
+            errors.append("Password and confirm password must match.")
+        if not re.match(password_pattern, password):
+            errors.append("Password must be at least 8 characters long and include 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.")
+
+        # Check for existing email and mobile only
+        existing_email = User.query.filter_by(email=email).first()
+        if existing_email:
+            errors.append("Email already exists.")
+
+        existing_mobile = User.query.filter_by(mobile=mobile).first()
+        if existing_mobile:
+            errors.append("Mobile number already exists.")
+
+        if errors:
+            return render_template('register.html', register_errors=errors, form_data={
+                'username': username,
+                'email': email,
+                'mobile': mobile
+            })
+
         # Create new user
         new_user = User(
             username = username,
@@ -68,6 +105,7 @@ def register():
         db.session.commit()
         login_user(new_user)
         return redirect(url_for('home'))
+
     return render_template('register.html')
 
 @app.route('/category/<category_name>')

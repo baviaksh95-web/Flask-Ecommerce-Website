@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container my-5">
+  {% if current_user.is_authenticated %}
+  <div class="alert alert-success text-center">
+      Welcome, {{ current_user.username }}! Logged in as {{ current_user.email }}
+  </div>
+  {% endif %}
 
-<section id="categories" class="container my-5">
+  <section id="categories" class="my-5">
 <h2 class="text-center my-5">Shop by Category</h2>
 <div class="row">
 <!--Men's Clothing -->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'men')}}">
-    <img src="{{ url_for('static', filename='images/cat-men.jpeg') }}" 
+    <img src="{{ url_for('static', filename='images/men-fashion.jpg') }}" 
          class="img-fluid rounded" 
          alt="Mens">
   </a>
@@ -17,7 +23,7 @@
 <!--Women's Clothing -->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'women')}}">
-    <img src="{{ url_for('static', filename='images/cat-women.jpeg') }}" 
+    <img src="{{ url_for('static', filename='images/women-fashion.jpg') }}" 
          class="img-fluid rounded" 
          alt="Womens">
   </a>
@@ -27,7 +33,7 @@
 <!--Kids -->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'kids')}}">
-  <img src="{{ url_for('static', filename='images/cat-kids.jpeg') }}"
+  <img src="{{ url_for('static', filename='images/kids-fashion.jpg') }}"
   class="img-fluid rounded" 
   alt="--Kids">
   </a>
@@ -36,7 +42,7 @@
 <!---Electronics-->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'electronics')}}">
-    <img src="{{ url_for('static', filename='images/cat-electronics.jpeg') }}" 
+    <img src="{{ url_for('static', filename='images/electronics.jpg') }}" 
     class="img-fluid rounded" 
     alt="---Electronics--"></a>
   <h6 class="mt-2">Electronics</h6>
@@ -44,7 +50,7 @@
 <!--Makeup-->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'makeup')}}">
-    <img src="{{ url_for('static', filename='images/cat-makeup.jpeg') }}"
+    <img src="{{ url_for('static', filename='images/makeup_2.jpg') }}"
     class="img-fluid rounded" 
     alt="Makeup"></a>
   <h6 class="mt-2">Makeup</h6>
@@ -52,7 +58,7 @@
 <!--Accesories-->
 <div class="col-md-6 col-lg-4">
   <a href="{{ url_for('category', category_name = 'accessories')}}">
-    <img src="{{ url_for('static', filename='images/cat-accesories.jpeg') }}"
+    <img src="{{ url_for('static', filename='images/accessories.jpg') }}"
     class="img-fluid rounded" 
     alt="Accessories"></a>
   <h6 class="mt-2">Accessories</h6>
@@ -77,6 +83,7 @@
     </div>
   </div>
 </section>
+</div>
 
 {% endblock %}
 
