@@ -200,6 +200,7 @@ def search():
     return render_template("search.html", products = products, query = query)
 
 with app.app_context():
+    db.create_all()
     products = Product.query.all()
     print(products)
 
