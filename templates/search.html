@@ -4,8 +4,8 @@
 
 {% for product in products %}
     <div>
-        <a href="{{url_for('product_detail', product_id = product.id)}}">
-            <img src="{{url_for('static', filename = 'images/' +product.image_file)}} " width="200">
+            <a href="{{url_for('product_detail', product_id = product.id)}}">
+                <img src="{{url_for('static', filename='images/' + product.product_image)}}" width="200">
         </a>
         <h4> {{product.product_name}}</h4>
         <p>  {{product.product_price}}</p>

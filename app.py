@@ -1,4 +1,5 @@
 import re
+import os
 from flask_login import login_user, logout_user, current_user, login_required
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_login import login_user
@@ -199,10 +200,11 @@ def search():
 
     return render_template("search.html", products = products, query = query)
 
+db_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'database')
+os.makedirs(db_dir, exist_ok=True)
+
 with app.app_context():
     db.create_all()
-    products = Product.query.all()
-    print(products)
 
 if __name__=="__main__":
     app.run(debug=True)
